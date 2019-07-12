@@ -1,6 +1,8 @@
 #include <ros/ros.h>
 #include <std_msgs/String.h>
 #include <boost/asio.hpp>
+#include <bluetooth/bluetooth.h>
+#include <bluetooth/rfcomm.h>
 
 volatile bool comp = false;
 volatile bool processing = false;

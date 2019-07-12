@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(wonder)
 
+
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -11,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
         roscpp
         std_msgs
         )
+find_package(Qt5 COMPONENTS Widgets Bluetooth REQUIRED)
+get_target_property(QtCore_location Qt5::Core LOCATION)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -201,3 +204,5 @@ add_executable(pub src/pub.cpp)
 target_link_libraries(pub ${catkin_LIBRARIES})
 add_executable(sub src/sub.cpp)
 target_link_libraries(sub ${catkin_LIBRARIES})
+add_executable(bluetooth src/bluetooth.cpp)
+target_link_libraries(bluetooth ${catkin_LIBRARIES} Qt5::Widgets Qt5::Bluetooth)
