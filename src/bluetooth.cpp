@@ -35,7 +35,6 @@ int main(int argc, char **argv) {
         ROS_INFO("there is %s pending connection", rfcommServer->hasPendingConnections() ? "" : "not");
         if (rfcommServer->hasPendingConnections()) {
             QBluetoothSocket *pSocket = rfcommServer->nextPendingConnection();
-            assert(pSocket != nullptr);
             pSocket->open(QIODevice::OpenModeFlag::ReadWrite);
             while (pSocket->isOpen()) {
                 const QByteArray &array = pSocket->readAll();
@@ -44,6 +43,7 @@ int main(int argc, char **argv) {
                 app.processEvents();
                 rate.sleep();
             }
+            delete pSocket;
         }
         ros::spinOnce();
         app.processEvents();
