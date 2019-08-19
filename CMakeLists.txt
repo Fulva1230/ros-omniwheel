@@ -12,8 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
         roscpp
         std_msgs
         )
-find_package(Qt5 COMPONENTS Widgets Bluetooth REQUIRED)
-get_target_property(QtCore_location Qt5::Core LOCATION)
+find_package(Qt5 COMPONENTS Core Bluetooth REQUIRED)
 find_library(wiringPi_LIB wiringPi)
 find_package(Boost REQUIRED system filesystem)
 
@@ -207,6 +206,6 @@ target_link_libraries(pub ${catkin_LIBRARIES})
 add_executable(sub src/sub.cpp)
 target_link_libraries(sub ${catkin_LIBRARIES})
 add_executable(bluetooth src/bluetooth.cpp)
-target_link_libraries(bluetooth ${catkin_LIBRARIES} Qt5::Widgets Qt5::Bluetooth)
+target_link_libraries(bluetooth ${catkin_LIBRARIES} Qt5::Bluetooth)
 add_executable(uartNode src/uartNode.cpp)
 target_link_libraries(uartNode ${wiringPi_LIB} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
